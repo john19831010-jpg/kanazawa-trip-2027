@@ -442,6 +442,9 @@
       flex-direction: column;
       align-items: center;
       gap: 4px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     .day-tab-btn:hover {
@@ -2249,22 +2252,47 @@
     }
 
     function switchDay(dayNum) {
-      currentDay = dayNum;
-      document.querySelectorAll('.day-tab-btn').forEach((btn, idx) => {
-        btn.classList.toggle('active', idx === dayNum - 1);
-      });
-      document.querySelectorAll('.day-panel').forEach((panel, idx) => {
-        panel.classList.toggle('active', idx === dayNum - 1);
+      currentDay = Number(dayNum);
+
+      // 1. 切換標籤按鈕 Active
+      const buttons = document.querySelectorAll('.day-tab-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx === currentDay - 1) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
       });
 
+      // 2. 切換各天行程內容面板（雙重防護：ID直取 + style.display 強制設定）
+      for (let i = 1; i <= 6; i++) {
+        const panel = document.getElementById('day-panel-' + i);
+        if (panel) {
+          if (i === currentDay) {
+            panel.classList.add('active');
+            panel.style.display = 'block';
+          } else {
+            panel.classList.remove('active');
+            panel.style.display = 'none';
+          }
+        }
+      }
+
+      // 3. 更新地圖標題
       const mapTitle = document.getElementById('map-day-title');
-      if (mapTitle) mapTitle.innerText = `DAY ${dayNum}`;
+      if (mapTitle) mapTitle.innerText = 'DAY ' + currentDay;
 
-      renderMapForDay(dayNum);
-      setTimeout(() => {
-        if (map) map.invalidateSize();
-      }, 200);
+      // 4. 重繪地圖標記與路線（防護式執行）
+      try {
+        renderMapForDay(currentDay);
+        setTimeout(() => {
+          if (map) map.invalidateSize();
+        }, 150);
+      } catch (err) {
+        console.error('Map render error:', err);
+      }
     }
+    window.switchDay = switchDay;
 
     function focusLocation(dayNum, index) {
       if (currentDay !== dayNum) {
