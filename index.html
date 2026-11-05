@@ -1044,10 +1044,10 @@
             <div class="flight-segment" style="margin-bottom: 8px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span style="font-weight: 700; color: #fff;">房間 1：豪華特大床房 (1大床)</span>
-                <span class="badge badge-accent">待扣款 Unpaid</span>
+                <span class="badge badge-success">已付款 Paid</span>
               </div>
               <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
-                登記3成人+1位10歲孩童 ｜ 無早餐 ｜ 訂單：<code>ORD0030846987</code> (確認號 1234223)
+                登記3成人+1位10歲孩童 ｜ 無早餐 ｜ 訂單：<code>ORD0030846987</code> (確認號 1234223) ｜ 現場僅收住宿稅約 TWD 780
               </div>
             </div>
 
@@ -1081,6 +1081,7 @@
           <option value="museum21">金澤21世紀美術館</option>
           <option value="samurai">長町武家屋敷跡</option>
           <option value="ninjadera">妙立寺（忍者寺）</option>
+          <option value="amaharashi">道の駅 雨晴（雨晴海岸・雪白立山連峰）</option>
           <option value="forus">金澤Forus百貨（金澤站東口）</option>
           <option value="airport">小松機場（国際線ターミナル）</option>
         </select>
@@ -1334,9 +1335,43 @@
             <div class="timeline">
               <img src="images/kanazawa_day3.jpg" alt="DAY 3 北陸新幹線富山一日遊" class="timeline-banner">
 
+              <!-- 雨晴海岸導遊分析彈出卡 -->
+              <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: 16px; padding: 18px; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-weight: 700; color: var(--gold); font-size: 1.05rem;">
+                    <i class="fa-solid fa-mountain-sun"></i> 導遊私房分析：富山加排「雨晴海岸」會推薦嗎？
+                  </span>
+                  <span class="badge badge-gold">☀️ 當日晴天限定加選</span>
+                </div>
+                <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6;">
+                  <div><strong>• 結論：</strong>推薦列為<strong>「當日晴天限定的彈性加選」</strong>，不建議當死板的必排主行程！</div>
+                  <div><strong>• ☀️ 若當日萬里無雲大晴天：100% 值得衝！</strong> 白雪覆蓋的 3,000 公尺立山連峰倒映在海面與女岩背後，是世界級絕景！</div>
+                  <div><strong>• ☁️ 若當日多雲、下雪或陰天：絕對不要去！</strong> 1月北陸陰天率高達 80%（能清楚看見雪山天數僅 4~8 天）。若沒大太陽只會看到一片灰海與礁石，海風極度刺骨，帶媽媽與小孩吹風容易著涼。陰天直接照原訂走富山市區星巴克＋玻璃美術館最溫暖舒適！</div>
+                  <div><strong>• 🚐 6人最佳走法：</strong>金澤搭新幹線 14 分鐘到「新高岡站」，6人叫計程車約 20 分鐘直達<strong>【道の駅 雨晴】</strong>（車資約 ¥3,500/車，免受限於 1~2 小時一班的火車）。休息站 2F/3F 是<strong>全新室內暖氣落地窗景觀咖啡廳</strong>，老人家吹暖氣喝咖啡就能飽覽雪山與女岩，完全不受凍！隨後轉往富山站吃午餐。</div>
+                </div>
+              </div>
+
+              <div class="timeline-item spot-item" style="border-left: 4px solid var(--gold);">
+                <div class="timeline-header">
+                  <span class="timeline-time"><i class="fa-regular fa-clock"></i> 晴天加選 (09:00 - 11:30)</span>
+                  <span class="badge badge-gold">晴天限定・世界級絕景</span>
+                </div>
+                <div class="timeline-title">雨晴海岸 ＆ 道の駅 雨晴（室內暖氣遠眺雪白立山連峰）</div>
+                <div class="timeline-jp-name">
+                  <span>道の駅 雨晴（あまはらし） / 女岩（おんないわ）</span>
+                </div>
+                <div class="timeline-desc">
+                  從金澤搭新幹線 14 分鐘抵達新高岡，轉計程車直達「道の駅 雨晴」。2018 年落成的全白現代建築，2樓設有整片落地窗的觀景咖啡座，在溫暖室內就能一覽女岩與背後壯麗雄偉的 3,000 公尺積雪立山連峰！還能拍到 JR 冰見線列車穿過海岸的經典明信片角度。
+                </div>
+                <div class="timeline-actions">
+                  <button class="btn-action btn-focus" onclick="focusLocation(3, 6)"><i class="fa-solid fa-location-dot"></i> 定位：道の駅 雨晴</button>
+                  <button class="btn-action" onclick="copyText('道の駅 雨晴 富山県高岡市太田24-74', '道の駅 雨晴')"><i class="fa-regular fa-copy"></i> 複製雨晴地址</button>
+                </div>
+              </div>
+
               <div class="timeline-item transit-item">
                 <div class="timeline-header">
-                  <span class="timeline-time"><i class="fa-regular fa-clock"></i> 09:20 - 10:00</span>
+                  <span class="timeline-time"><i class="fa-regular fa-clock"></i> 09:20 - 10:00 (一般/陰天模式)</span>
                   <span class="badge badge-primary">北陸新幹線自由席</span>
                 </div>
                 <div class="timeline-title">金澤站 ➔ 富山站（極速子彈列車體驗）</div>
@@ -1911,7 +1946,8 @@
         { name: "廻る富山湾 すし玉", lat: 36.7015, lng: 137.2130, time: "12:15", desc: "富山站1F・冰見寒鰤魚與白蝦丼", type: "food" },
         { name: "富山市玻璃美術館", lat: 36.6896, lng: 137.2144, time: "14:00", desc: "隈研吾大師設計・木葉與玻璃森林", type: "spot" },
         { name: "池田屋安兵衛商店", lat: 36.6891, lng: 137.2158, time: "15:30", desc: "三百年漢藥舖・手揉反魂丹藥丸體驗", type: "spot" },
-        { name: "赤玉本店 金澤關東煮", lat: 36.5606, lng: 136.6521, time: "18:30", desc: "片町百年溫泉風味高湯關東煮", type: "food" }
+        { name: "赤玉本店 金澤關東煮", lat: 36.5606, lng: 136.6521, time: "18:30", desc: "片町百年溫泉風味高湯關東煮", type: "food" },
+        { name: "道の駅 雨晴 (雨晴海岸・雪白立山連峰)", lat: 36.8167, lng: 137.0392, time: "晴天加選", desc: "晴天限定！室內暖氣展望台遠眺女岩與立山連峰", type: "spot" }
       ],
       4: [
         { name: "兼六園 (桂坂口・雪吊)", lat: 36.5621, lng: 136.6626, time: "09:30", desc: "日本三大名園之首・唐崎松雪吊奇景", type: "spot" },
@@ -2099,6 +2135,11 @@
         jp: "運転手さん、妙立寺（忍者寺）までお願いします。",
         kana: "Untenshu-san, Myōryū-ji (Ninjadera) made onegaishimasu.",
         zh: "司機先生，請載我們到妙立寺（忍者寺），謝謝。"
+      },
+      amaharashi: {
+        jp: "運転手さん、道の駅 雨晴（雨晴海岸）までお願いします。",
+        kana: "Untenshu-san, Michi no Eki Amaharashi made onegaishimasu.",
+        zh: "司機先生，請載我們到道の駅 雨晴（雨晴海岸），謝謝。"
       },
       forus: {
         jp: "運転手さん、金沢駅東口の金沢フォーラス前までお願いします。",
