@@ -1837,9 +1837,14 @@
                 <i class="fa-solid fa-map-location-dot" style="color: var(--primary);"></i>
                 <span>金澤行程地圖對照 - <strong id="map-day-title" style="color: var(--primary);">DAY 1</strong></span>
               </span>
-              <button class="btn-action" style="padding: 4px 10px; font-size: 0.75rem;" onclick="resetMap(currentDay)">
-                <i class="fa-solid fa-expand"></i> 重設全景
-              </button>
+              <div style="display: flex; gap: 6px;">
+                <a id="btn-open-google-maps" href="https://www.google.com/maps/dir/?api=1&origin=小松空港&destination=金沢駅&waypoints=近江町市場%7C東茶屋街" target="_blank" rel="noopener noreferrer" class="btn-action" style="padding: 4px 10px; font-size: 0.75rem; background: rgba(59, 130, 246, 0.25); border-color: rgba(59, 130, 246, 0.5); color: #93c5fd; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                  <i class="fa-brands fa-google"></i> Google 地圖導航
+                </a>
+                <button class="btn-action" style="padding: 4px 10px; font-size: 0.75rem;" onclick="resetMap(currentDay)">
+                  <i class="fa-solid fa-expand"></i> 重設全景
+                </button>
+              </div>
             </div>
             <div id="itinerary-map"></div>
           </div>
@@ -2179,9 +2184,11 @@
         attributionControl: false
       }).setView([36.5794, 136.6468], 13);
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        maxZoom: 18,
-        subdomains: 'abcd'
+      // 使用 Google Maps 繁體中文高畫質圖資（地標全中文、加載極速穩定零空白）
+      L.tileLayer('https://{s}.google.com/vt/lyrs=m&hl=zh-TW&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        attribution: '&copy; Google Maps'
       }).addTo(map);
 
       markersLayer = L.layerGroup().addTo(map);
@@ -2279,8 +2286,22 @@
       }
 
       // 3. 更新地圖標題
-      const mapTitle = document.getElementById('map-day-title');
+const mapTitle = document.getElementById('map-day-title');
       if (mapTitle) mapTitle.innerText = 'DAY ' + currentDay;
+
+      // 更新「Google 地圖導航」外連網址
+      const googleMapsRoutes = {
+        1: 'https://www.google.com/maps/dir/?api=1&origin=小松空港&destination=金沢駅&waypoints=近江町市場%7C東茶屋街',
+        2: 'https://www.google.com/maps/dir/?api=1&origin=金沢駅&destination=金沢フォーラス&waypoints=城山天守閣展望台%7C白川郷荻町合掌村%7C飛騨高山古い町並',
+        3: 'https://www.google.com/maps/dir/?api=1&origin=富山駅&destination=富山市ガラス美術館&waypoints=富岩運河環水公園%7C池田屋安兵衛商店%7C道の駅雨晴',
+        4: 'https://www.google.com/maps/dir/?api=1&origin=金沢駅&destination=長町武家屋敷跡&waypoints=兼六園%7C金沢城公園%7C金沢21世紀美術館',
+        5: 'https://www.google.com/maps/dir/?api=1&origin=金沢駅&destination=肉匠Jade金沢&waypoints=妙立寺%7Cにし茶屋街%7C香林坊大和',
+        6: 'https://www.google.com/maps/dir/?api=1&origin=金沢駅西口&destination=小松空港'
+      };
+      const gmapBtn = document.getElementById('btn-open-google-maps');
+      if (gmapBtn && googleMapsRoutes[currentDay]) {
+        gmapBtn.href = googleMapsRoutes[currentDay];
+      }
 
       // 4. 重繪地圖標記與路線（防護式執行）
       try {
