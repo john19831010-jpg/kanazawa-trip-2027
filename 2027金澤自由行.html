@@ -2358,11 +2358,8 @@
     }
 
     function copyVegetarianMemo() {
-      const text = "すみません、私はベジタリアン（素食）です。
-肉、魚、魚介類（エビ・カニ・貝）、動物性ゼラチンは食べられません。
-また、カツオ節や魚の出汁（かつおだし・煮干し）も食べられません。
-（野菜、豆腐、大豆製品、海藻、キノコ類、米、麺類、卵、乳製品は大丈夫です。）
-対応していただけるメニューはありますでしょうか？よろしくお願いします。";
+      const el = document.getElementById('veg-japanese-text');
+      const text = el ? el.innerText : 'すみません、私はベジタリアン（素食）です。';
       copyText(text, '媽媽安心素食日語卡');
     }
 
@@ -2419,11 +2416,22 @@
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      initMap();
+    // 立即啟動倒數計時器（每秒即時跳動）
+    try {
       updateCountdown();
       setInterval(updateCountdown, 1000);
-    });
+    } catch (e) {
+      console.error('Countdown init error:', e);
+    }
+
+    // 地圖與頁面組件初始化
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        try { initMap(); } catch(e) { console.error('Map init error:', e); }
+      });
+    } else {
+      try { initMap(); } catch(e) { console.error('Map init error:', e); }
+    }
   </script>
 </body>
 </html>
